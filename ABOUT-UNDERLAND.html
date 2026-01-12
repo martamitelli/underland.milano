@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Underland Collective</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Special+Gothic+Condensed+One&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --blue-brand: #0502FD;
+            --gray-bg: #D9D9D9;
+            --font-condensed: 'Special Gothic Condensed One', sans-serif;
+            --font-mono: 'PT Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            font-family: var(--font-condensed);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Blurred background text */
+        .background-text {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28vw;
+            font-family: var(--font-condensed);
+            color: rgba(5, 2, 253, 0.4);
+            filter: blur(10px);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
+            line-height: 1;
+            padding-top: 20px;
+            max-height: 200px;
+            overflow: hidden;
+        }
+
+        /* Fixed logo */
+        .logo-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 320px;
+            height: auto;
+        }
+
+        /* Back arrow */
+        .back-arrow {
+            position: fixed;
+            top: 35px;
+            left: 50px;
+            z-index: 101;
+            font-size: 3rem;
+            color: var(--blue-brand);
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .back-arrow:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Main content */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            padding: 200px 60px 80px 60px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* Text box */
+        .text-box {
+            background-color: var(--blue-brand);
+            color: white;
+            padding: 40px 40px 40px 60px;
+            border-radius: 0;
+            margin-left: -60px;
+            width: calc(100% + 60px);
+        }
+
+        .text-secondary {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--blue-brand);
+            margin-top: 20px;
+        }
+
+        .text-title {
+            font-family: var(--font-condensed);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .text-body {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Image */
+        .about-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0;
+        }
+
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+            border-radius: 0;
+            background: black;
+        }
+
+        .about-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bottom section */
+        .bottom-section {
+            margin-top: 60px;
+        }
+
+        .single-blue-box {
+            background-color: var(--blue-brand);
+            color: white;
+            padding: 40px 60px;
+            margin-left: -60px;
+            margin-right: -60px;
+            width: calc(100% + 120px);
+        }
+
+        .three-box-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .blue-text-box {
+            font-family: var(--font-condensed);
+            font-size: 1.8rem;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .gif-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gif-video {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            mix-blend-mode: hue;
+            display: block;
+        }
+
+        .scope-section {
+            padding: 40px 0;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: -60px;
+        }
+
+        .scope-box {
+            background-color: var(--blue-brand);
+            color: white;
+            padding: 30px 60px;
+            font-family: var(--font-condensed);
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        /* Central content section */
+        .central-content {
+            margin-top: 20px;
+            margin-bottom: -150px;
+            position: relative;
+            min-height: 600px;
+            z-index: 100;
+        }
+
+        .central-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .images-collage {
+            position: relative;
+            height: 600px;
+        }
+
+        .central-text {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--blue-brand);
+            padding-top: 40px;
+            padding-left: 0;
+        }
+
+        .text-para-1 {
+            margin-bottom: 20px;
+            margin-left: -20%;
+            margin-right: 40%;
+            margin-top: -20px;
+        }
+
+        .text-para-2 {
+            margin-left: 5%;
+            margin-right: 30%;
+        }
+
+        /* Retro window effect */
+        .retro-window {
+            position: absolute;
+            border: 3px solid var(--blue-brand);
+            background: #D9D9D9;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Title bar (gray) */
+        .retro-window::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 30px;
+            background-color: #D9D9D9;
+            flex-shrink: 0;
+        }
+
+        /* Footer bar (gray) */
+        .retro-window::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 30px;
+            background-color: #D9D9D9;
+            flex-shrink: 0;
+        }
+
+        /* X button */
+        .retro-window .close-btn {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background: #D9D9D9;
+            border: 3px solid var(--blue-brand);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .retro-window .close-btn::before,
+        .retro-window .close-btn::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 3px;
+            background: var(--blue-brand);
+        }
+
+        .retro-window .close-btn::before {
+            transform: rotate(45deg);
+        }
+
+        .retro-window .close-btn::after {
+            transform: rotate(-45deg);
+        }
+
+        .retro-window img {
+            display: block;
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+            border-top: 3px solid var(--blue-brand);
+            border-bottom: 3px solid var(--blue-brand);
+        }
+
+        /* Individual window positions */
+        .window-1 {
+            top: -80px;
+            left: 0;
+            width: 200px;
+        }
+
+        .window-2 {
+            top: 20px;
+            left: 220px;
+            width: 220px;
+        }
+
+        .window-3 {
+            top: 240px;
+            left: 20px;
+            width: 180px;
+        }
+
+        .window-4 {
+            top: 150px;
+            left: 460px;
+            width: 160px;
+        }
+
+        /* Topo decoration */
+        .topo-decoration {
+            position: absolute;
+            bottom: -100px;
+            top: 70px;
+            right: -50px;
+            width: 400px;
+            height: auto;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--blue-brand);
+            color: white;
+            padding: 40px 60px;
+            margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-btn {
+            font-family: var(--font-condensed);
+            font-size: 1.5rem;
+            border: 2px solid white;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .download-btn:hover {
+            background-color: white;
+            color: var(--blue-brand);
+        }
+
+        .arrow-down {
+            font-size: 1.5rem;
+        }
+
+        .social-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-align: right;
+        }
+
+        .social-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .social-text a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .ig-icon {
+            width: 40px;
+            height: auto;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .background-text {
+                font-size: 15vw;
+            }
+
+            .logo-img {
+                width: 200px;
+            }
+
+            .back-arrow {
+                left: 20px;
+                top: 20px;
+                font-size: 2rem;
+            }
+
+            .content-wrapper {
+                padding: 150px 20px 60px 20px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .text-title {
+                font-size: 2rem;
+            }
+
+            .text-body {
+                font-size: 0.9rem;
+            }
+
+            .video-container {
+                aspect-ratio: 16 / 9;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Blurred background text -->
+    <div class="background-text">UNDERLAND</div>
+
+    <!-- Fixed logo -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Underland Collective" class="logo-img">
+    </div>
+
+    <!-- Back arrow -->
+    <a href="HOME-UNDERLAND.html" class="back-arrow">←</a>
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+        <div class="content-grid">
+
+            <!-- Text box -->
+            <div>
+                <div class="text-box">
+                    <div class="text-title">
+                        Underland è un collettivo urbano simulato, costruito come dispositivo narrativo per rendere
+                        visibile
+                        la fragilità idrica di Milano.
+                    </div>
+                </div>
+                <div class="text-secondary">
+                    Non rappresenta un gruppo reale, ma una presenza riconoscibile che agisce nello spazio pubblico per
+                    portare alla luce ciò che normalmente resta invisibile: infrastrutture sotterranee, corsi d'acqua
+                    nascosti, decisioni urbanistiche stratificate nel tempo.<br><br>
+                    Underland non osserva la città dall'alto, ma la attraversa, la segna e la riattiva, utilizzando il
+                    territorio stesso come superficie di racconto.
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div>
+                <img src="img/about-1.png" alt="Underland" class="about-image">
+            </div>
+
+            <!-- Video -->
+            <div class="video-container">
+                <video class="about-video" autoplay loop muted playsinline>
+                    <source src="img/video-about.mp4" type="video/mp4">
+                </video>
+            </div>
+
+        </div>
+
+        <!-- Bottom section -->
+        <div class="bottom-section">
+            <!-- Single blue box containing all three elements -->
+            <div class="single-blue-box">
+                <div class="three-box-grid">
+                    <!-- Left text -->
+                    <div class="blue-text-box">
+                        Un soggetto urbano "dal basso" permette di parlare dell'acqua come problema quotidiano e
+                        strutturale, evitando il linguaggio istituzionale e quello puramente accademico.
+                    </div>
+
+                    <!-- Center gif/video -->
+                    <div class="gif-box">
+                        <img src="img/GIF2.gif" alt="Animation" class="gif-video">
+                    </div>
+
+                    <!-- Right text -->
+                    <div class="blue-text-box">
+                        Il collettivo diventa così un canale comunicativo credibile e situato, capace di abitare la
+                        città e
+                        di costruire una contro-narrazione rispetto alla retorica del progresso.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scope section -->
+            <div class="scope-section">
+                <div class="scope-box">
+                    il nostro scopo
+                </div>
+            </div>
+        </div>
+
+        <!-- Central content section -->
+        <div class="central-content">
+            <div class="central-grid">
+                <!-- Left: Images collage with retro windows -->
+                <div class="images-collage">
+                    <div class="retro-window window-1">
+                        <div class="close-btn"></div>
+                        <img src="img/image1-about.png" alt="Image 1">
+                    </div>
+                    <div class="retro-window window-2">
+                        <div class="close-btn"></div>
+                        <img src="img/image2-about.png" alt="Image 2">
+                    </div>
+                    <div class="retro-window window-3">
+                        <div class="close-btn"></div>
+                        <img src="img/image3-about.png" alt="Image 3">
+                    </div>
+                    <div class="retro-window window-4">
+                        <div class="close-btn"></div>
+                        <img src="img/image4-about.png" alt="Image 4">
+                    </div>
+                </div>
+
+                <!-- Right: Central text -->
+                <div class="central-text">
+                    <p class="text-para-1">
+                        Underland trasforma informazioni invisibili in esperienza diretta, riportando l'acqua al centro
+                        come elemento storico, politico ed ecologico.
+                    </p>
+                    <p class="text-para-2">
+                        La fiction diventa così uno strumento di progetto: una lente critica per leggere il presente e
+                        riconoscere le fragilità che continueranno a manifestarsi finché resteranno sepolte.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Topo decoration -->
+            <img src="img/topo.png" alt="Decoration" class="topo-decoration">
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="download-btn">
+            <span>scarica la mappa</span>
+            <span class="arrow-down">↓</span>
+        </div>
+
+        <div class="social-area">
+            <span class="social-text">
+                Seguici su <a href="#">instagram</a><br>
+                e vivi l'esperienza in loco.
+            </span>
+            <img src="img/icona-ig.png" class="ig-icon" alt="Instagram">
+        </div>
+    </footer>
+
+</body>
+
+</html>
