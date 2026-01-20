@@ -613,6 +613,40 @@
                 top: auto;
                 right: auto;
                 width: 100%;
+
+                /* Horizontal Scroll Setup */
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 20px;
+                /* Space for scrollbar/touch */
+
+                /* Scroll Snap for nice feeling (Optional but recommended) */
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                /* Smooth scroll iOS */
+
+                /* Remove column gap, use margin on items instead if needed */
+                gap: 20px;
+
+                /* Reset margins from desktop */
+                margin-right: 0;
+            }
+
+            .module-box {
+                /* Ensure boxes don't shrink and stay consistent size */
+                flex-shrink: 0;
+                width: 80vw;
+                /* Most of the screen width */
+                max-width: 300px;
+                /* Or whatever max size fits design */
+
+                /* Snap alignment */
+                scroll-snap-align: center;
+
+                /* Reset Desktop margins */
+                margin-left: 0;
+                margin-right: 0;
             }
 
             .main-footer {
@@ -837,6 +871,51 @@
             z-index: 6;
         }
 
+        /* Image 4: Middle Left (Pacini) */
+        .w-img-4 {
+            top: 35%;
+            left: 35%;
+            width: 22%;
+            min-width: 220px;
+            z-index: 9;
+        }
+
+        /* Image 5: Top Center (Pacini) */
+        .w-img-5 {
+            top: 15%;
+            right: 40%;
+            width: 25%;
+            min-width: 250px;
+            z-index: 12;
+        }
+
+        /* Text 3: New Box for Pacini */
+        .w-text-3 {
+            bottom: 5%;
+            left: 30%;
+            width: 30%;
+            min-width: 300px;
+            z-index: 10;
+        }
+
+        /* Image 6: Bottom Center/Left (Ponzio) */
+        .w-img-6 {
+            bottom: 35%;
+            left: 20%;
+            width: 20%;
+            min-width: 200px;
+            z-index: 11;
+        }
+
+        /* Image 7: Top Left/Center (Ponzio) */
+        .w-img-7 {
+            top: 25%;
+            left: 50%;
+            width: 22%;
+            min-width: 220px;
+            z-index: 7;
+        }
+
         /* Main Close Button (Top Right Big X) */
         .main-close-btn {
             position: absolute;
@@ -990,9 +1069,8 @@
                     <path
                         d="M532.97,285.51c.79.72,6.3,1.93,7.4,1.8,1.62-.2,2.7-2.04,3.95-2.33,2.79-.63,12.68,8.28,15.75,10.22,1.46.93,3.52,1.14,5.09,2.18,4.1,2.7,17.3,10.34,18.26,14.44,1.29,5.52,1.6,15.57,2,21.62.66,10.14.36,20.67.93,30.87.31,5.65,2.55,11.1.34,16.71-4.45,11.26-12.82,21.65-15.38,33.67-.46,2.14-.53,4.24-.41,6.4-7.04-2.17-14.48-.19-21.34-.17-13.28.04-27.14-.7-40.64-2.8-4.04-.63-9.78-3.52-13.69-2.3-1.59.5-2.28,2.99-4.68,2.61-.7-.11-.86-2.33-2.35-3.21-2.44-1.44-6.3-.92-9.76-2.92-3.69-2.14-11.22-13.63-14.97-12.86-.83.17-1.61,1.59-2.81,1.52-3.16-.19-15.18-14.72-18.13-17.75-.76-.78-2.46-.81-3.31-1.68-2.35-2.4-4.64-5.89-7.18-8.34-.88-3.04,1.05-3.75,1.32-5.44.95-5.85,4.27-17.61,4.02-22.49-.43-8.28-9.06-10.12-9.91-18.01,7.51-7.4,5.74-20.88,11.26-28.78,1.89-2.7,6.23-4.53,8.65-6.82,3.54-3.34,6.93-6.59,10.53-9.89,1.27-1.17,2.18-3.86,3.34-4.84,6.33-5.33,30.27-2.88,32.29-4.96l.58-7.14c2.91,7.17,12.87,10.57,20.07,11.73,3.88.63,11.39-.34,14.92,1.43,2.22,1.11,2.38,6.15,3.85,7.5Z" />
                     <circle id="tappa-gioia" class="tappa" cx="532.96" cy="323.3" r="7.73" />
-                    <!-- ID rimosso dalla tappa errata -->
-                    <circle class="tappa" cx="543.11" cy="348.43" r="7.73" />
-                    <circle class="tappa" cx="538.28" cy="372.11" r="7.73" />
+                    <circle id="tappa-sanmarco" class="tappa" cx="543.11" cy="348.43" r="7.73" />
+                    <circle id="tappa-ponzio" class="tappa" cx="538.28" cy="372.11" r="7.73" />
                     <circle class="tappa" cx="512.91" cy="363.89" r="7.73" />
                     <circle class="tappa" cx="492.61" cy="291.89" r="7.73" />
 
@@ -1282,7 +1360,7 @@
                 <g id="zona-lambrate" class="zona" data-zona="lambrate">
                     <path
                         d="M788.21,283.01l-8.23-.48c-2.89,2.13-.94,7.55-1.97,9.37-.39.69-4.42,2.13-5.23,3.62-1.94,3.6.02,6.42.01,9.7,0,2.61-1,13.01-.51,14.08,3.89,8.6,22.97-.9,30.09-1.69,4.33-.48,8.8-.19,12.98.91l.1,7.18c-7.03.96-5.08-5.78-13.18-5.53-8.28.25-6.18,7.2-7.33,7.4l-24.47.86c-2.61-.32-2.44-3.69-4.7-4.38-2.65-.81-13.26-.49-15.27,1.65-2.4,2.58.74,6.7-6.3,6.29-4.85-.28-6.98-5.57-11.78-5.45l-1.57,9.06-5.2.89-1.88-3.15-4.62-3.08-5.01,8.15c-1.78-1.33-1.41-3.85-2.75-5.41-2.86-3.32-19.73-1.97-24.26-.68-1.44.41-8.13,2.96-9.16,3.56-1.69.99-1.85,2.79-2.83,3.53-3.31,2.49-39.93-.05-47.33.42-3.11.19-5.26,1.91-8.13,2.27-9.1,1.12-20.51-.77-29.88-.15-1.2-.31-1.29-1.11-1.48-2.15-1.52-8.28-.89-18.04-1.82-26.34-1.1-9.71-11.88-11.17-17.97-16.5-.59-.51-1.25-.15-1.21-1.66l37.35-50.04,1.19-.24c11.69,7.07,11.75,12.43,24.67,2.56,7.32-5.59,13.58-13.79,19.54-19.45,6.09-5.78,10.35-4.52,17.01-7.61,11.4-5.29,39.82-38.26,49.82-49.18,9.98-10.9,23.56-30.33,34.48-39.21,3.33-2.71,3.6-4.18,6.84-7.62,11.06-11.77,23.65-7.12,38.2-6.4l.54,6.62c.95,2.34,4.3,1.58,4.78,2.14.72.84-1.71,8.71,5.17,9.02,2.24.1,3.46-2.29,5.82-1.83-3.38,15.42,12.07,14.47,21.85,19.67l-.03,7.58c-8.07-1.96-6.96,4.64-9.52,7.29-2.12,2.2-8.49.3-11.39-.04,1.34-5.76,3.75-11,2.61-17.13-2.68-4.18-29.75,1.16-34.75,3.62-7.96,3.93-4.94,8.01-6.23,14.67-.64,3.3-3.47,6.17-3.5,10.19-.03,4.66,2.89,9.52,3.65,13.71,1.98,10.92,1.56,22.04-.07,32.96-16.26,2.4-6.93,16.78-7.99,27.79,1.25,8.35,14.83,6.21,20.85,5.05v23.62Z" />
-                    <circle class="tappa" cx="612.86" cy="301.55" r="7.73" />
+                    <circle id="tappa-pacini" class="tappa" cx="612.86" cy="301.55" r="7.73" />
                     <circle class="tappa" cx="644.03" cy="274.73" r="7.73" />
 
                     <g id="etichetta-4" data-name="etichetta">
@@ -1801,6 +1879,8 @@
                 </div>
             </div>
 
+
+
             <!-- Window 4: Image Canal -->
             <div class="retro-window-popup w-img-2">
                 <div class="win-btn">
@@ -1815,6 +1895,366 @@
                     <div class="win-close-icon"></div>
                 </div>
                 <img src="img/gioia-3.png" class="win-img" alt="Lavori copertura">
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY PACINI -->
+    <div id="overlay-pacini"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; overflow: auto;">
+        <!-- Main Close Button -->
+        <div class="main-close-btn" onclick="closeOverlay('overlay-pacini')"></div>
+
+        <div class="overlay-content">
+            <!-- Window 1: Text History -->
+            <div class="retro-window-popup w-text-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Collettore Nord-Est – Via Giovanni Pacini</div>
+                    <p>Il Collettore Nord-Est è uno dei nodi più complessi e sollecitati dell’intero sistema
+                        idrico sotterraneo milanese.</p><br>
+                    <p>Costruito tra il 1926 e il 1927, raccoglie e convoglia acque nere, acque meteoriche e
+                        contributi sorgivi provenienti da diverse porzioni della città nord-orientale.</p><br>
+                    <p>È un’infrastruttura pensata per gestire la convergenza, per assorbire flussi differenti e
+                        trasformarli in un’unica direzione controllata.</p><br>
+                    <p>Oggi questa funzione di nodo è diventata il suo principale punto di fragilità.</p><br>
+                    <p>Quando piogge intense e improvvise colpiscono la città, i flussi si sommano, si scontrano
+                        e superano rapidamente la capacità del sistema.</p><br>
+                    <p>Qui l’acqua non scorre soltanto: si accumula, spinge, ritorna indietro.</p><br>
+                    <p>Qui l’acqua non scorre soltanto: si accumula, spinge, ritorna indietro.</p><br>
+                    <p>Il Collettore Nord-Est è il luogo in cui la complessità idraulica diventa pressione
+                        fisica.</p>
+                </div>
+            </div>
+
+            <!-- Window 8: Text 3 (New) -->
+            <div class="retro-window-popup w-text-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Perché questa tappa</div>
+                    <p>Via Giovanni Pacini si trova in un’area storicamente esposta a esondazioni e allagamenti
+                        ricorrenti.</p><br>
+                    <p>È uno dei punti in cui gli eventi meteorologici estremi si traducono più rapidamente in
+                        emergenza urbana.</p><br>
+                    <p>La presenza simultanea di acque reflue, piovane e sorgive rende questo collettore
+                        particolarmente vulnerabile ai sovraccarichi improvvisi.</p><br>
+                    <p>Qui il sistema non fallisce per degrado o obsolescenza, ma per eccesso di convergenza.
+                    </p><br>
+                    <p>Ogni evento critico si riflette in superficie con maggiore violenza: tombini che saltano,
+                        strade che si allagano, quartieri isolati.</p><br>
+                    <p>Abbiamo scelto questa tappa perché rappresenta il punto in cui la fragilità idrica smette
+                        di essere invisibile e diventa esperienza diretta per chi abita e attraversa la città.
+                    </p><br>
+                    <p>Qui il sottosuolo risponde immediatamente alla pioggia.</p>
+                </div>
+            </div>
+
+            <!-- Window 2: Image 1 -->
+            <div class="retro-window-popup w-img-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/pacini1.png" class="win-img" alt="Pacini 1">
+            </div>
+
+            <!-- Window 3: Text Action -->
+            <div class="retro-window-popup w-text-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">L'azione di Underland</div>
+                    <p><strong>Fase I – Modellazione</strong><br>
+                        Sulla base di planimetrie tecniche e documentazione storica, è stato realizzato un
+                        modello tridimensionale del nodo idraulico del Collettore Nord-Est, evidenziando la
+                        convergenza dei flussi e le discontinuità strutturali.</p><br>
+                    <p><strong>Fase II – Texturing e materiali</strong><br>
+                        Le superfici sono state ricostruite utilizzando materiali PBR derivati da fotografie
+                        reali, per restituire l’aspetto umido, usurato e stratificato dell’infrastruttura
+                        sotterranea.</p><br>
+                    <p><strong>Fase III – Camera</strong><br>
+                        Il movimento della camera virtuale simula un’esplorazione instabile, accentuando la
+                        sensazione di pressione, chiusura e accumulo tipica dei nodi idraulici saturi.</p><br>
+                    <p><strong>Fase IV – Rendering</strong><br>
+                        L’estetica finale riproduce una registrazione degradata in stile VHS, con distorsioni e
+                        interferenze che evocano un documento d’emergenza, catturato nel momento di massima
+                        tensione del sistema.</p><br>
+                    <p>Underland trasforma il nodo più critico della rete in un’esperienza visiva e percettiva,
+                        rendendo leggibile il punto in cui la città entra in conflitto diretto con l’acqua.</p>
+                </div>
+            </div>
+
+            <!-- Window 4: Image 2 -->
+            <div class="retro-window-popup w-img-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/pacini2.png" class="win-img" alt="Pacini 2">
+            </div>
+
+            <!-- Window 5: Image 3 -->
+            <div class="retro-window-popup w-img-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/pacini3.png" class="win-img" alt="Pacini 3">
+            </div>
+
+            <!-- Window 6: Image 4 -->
+            <div class="retro-window-popup w-img-4">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/pacini4.jpg" class="win-img" alt="Pacini 4">
+            </div>
+
+            <!-- Window 7: Image 5 -->
+            <div class="retro-window-popup w-img-5">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/pacini5.jpg" class="win-img" alt="Pacini 5">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- OVERLAY PONZIO -->
+    <div id="overlay-ponzio"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; overflow: auto;">
+        <!-- Main Close Button -->
+        <div class="main-close-btn" onclick="closeOverlay('overlay-ponzio')"></div>
+
+        <div class="overlay-content">
+            <!-- Window 1: Text History -->
+            <div class="retro-window-popup w-text-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Collettore Est – Via Giuseppe Ponzio (1925–1926)</div>
+                    <p>Il Collettore Est è una delle grandi infrastrutture fognarie realizzate a Milano tra il 1925 e il
+                        1926,
+                        in un momento storico in cui la città si stava espandendo rapidamente verso est.</p><br>
+                    <p>Progettato per raccogliere e convogliare acque meteoriche e reflue di ampie porzioni urbane, il
+                        collettore incarnava l’idea di una modernità efficiente, razionale e definitiva.</p><br>
+                    <p>Le sue dimensioni e la sua struttura rispondevano a parametri climatici, demografici e
+                        urbanistici
+                        considerati stabili e controllabili.</p><br>
+                    <p>Oggi quel sistema continua a funzionare, ma in condizioni profondamente mutate.</p><br>
+                    <p>L’aumento delle superfici impermeabili, la crescita urbana e l’intensificazione delle piogge
+                        hanno
+                        trasformato un’infrastruttura pensata per il futuro in un dispositivo costantemente sotto
+                        pressione.
+                    </p><br>
+                    <p>Il Collettore Est non è un relitto del passato: è un’infrastruttura viva che lavora
+                        quotidianamente
+                        oltre i propri limiti progettuali.</p><br>
+                    <p>Nel sottosuolo, la modernità non si è fermata: ha iniziato a invecchiare.</p>
+                </div>
+            </div>
+
+            <!-- Window 8: Text 3 (Perché qui) -->
+            <div class="retro-window-popup w-text-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Perché qui</div>
+                    <p>Via Giuseppe Ponzio rappresenta un punto emblematico di frizione tra un’infrastruttura progettata
+                        come
+                        definitiva e una città che ha superato le condizioni per cui era stata pensata.</p><br>
+                    <p>Il Collettore Est attraversa quest’area sostenendo carichi idraulici sempre più frequenti e
+                        intensi,
+                        soprattutto durante eventi di pioggia concentrata.</p><br>
+                    <p>Qui la fragilità non si manifesta come evento eccezionale, ma come funzionamento ordinario in
+                        regime di
+                        sovraccarico.</p><br>
+                    <p>Non è il crollo improvviso a raccontare il problema, ma la normalità di un sistema che resiste
+                        continuamente oltre le proprie soglie.</p><br>
+                    <p>Abbiamo scelto questa tappa perché rende visibile una contraddizione strutturale:
+                        un’infrastruttura
+                        moderna che invecchia più velocemente della città che dovrebbe servire.</p><br>
+                    <p>Qui il rischio non esplode: si accumula.</p>
+                </div>
+            </div>
+
+            <!-- Window 3: Text Action -->
+            <div class="retro-window-popup w-text-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">L'azione di Underland</div>
+                    <p><strong>Fase I – Modellazione</strong><br>
+                        A partire da fotografie d’archivio e disegni tecnici originali del Collettore Est, è stato
+                        costruito
+                        un modello tridimensionale che rispetta le proporzioni reali dell’infrastruttura.</p><br>
+                    <p><strong>Fase II – Texturing e materiali</strong><br>
+                        Le superfici sono state ricostruite utilizzando materiali PBR derivati dalle immagini
+                        disponibili,
+                        per ottenere una resa coerente con il comportamento reale della luce in ambienti sotterranei.
+                    </p><br>
+                    <p><strong>Fase III – Camera</strong><br>
+                        Il movimento della camera virtuale è stato derivato dal tracking di riprese reali effettuate con
+                        una
+                        videocamera tenuta a mano, per simulare un’esplorazione instabile e soggettiva dello spazio.</p>
+                    <br>
+                    <p><strong>Fase IV – Rendering</strong><br>
+                        L’output finale riproduce l’estetica di una registrazione VHS: grana, rumore, aberrazioni
+                        cromatiche
+                        e bassa risoluzione (640×480 px), evocando un documento che sembra provenire da un futuro già
+                        obsoleto.</p><br>
+                    <p>Underland rende percepibile la fatica di un’infrastruttura pensata come eterna, ma costretta a
+                        invecchiare sotto il peso della città contemporanea.</p>
+                </div>
+            </div>
+
+            <!-- Window 2: Image 1 -->
+            <div class="retro-window-popup w-img-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio1.png" class="win-img" alt="Ponzio 1">
+            </div>
+
+            <!-- Window 4: Image 2 -->
+            <div class="retro-window-popup w-img-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio2.png" class="win-img" alt="Ponzio 2">
+            </div>
+
+            <!-- Window 5: Image 3 -->
+            <div class="retro-window-popup w-img-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio3.png" class="win-img" alt="Ponzio 3">
+            </div>
+
+            <!-- Window 6: Image 4 -->
+            <div class="retro-window-popup w-img-4">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio4.png" class="win-img" alt="Ponzio 4">
+            </div>
+
+            <!-- Window 7: Image 5 -->
+            <div class="retro-window-popup w-img-5">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio5.png" class="win-img" alt="Ponzio 5">
+            </div>
+
+            <!-- Window 9: Image 6 -->
+            <div class="retro-window-popup w-img-6">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio6.png" class="win-img" alt="Ponzio 6">
+            </div>
+
+            <!-- Window 10: Image 7 -->
+            <div class="retro-window-popup w-img-7">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/ponzio7.png" class="win-img" alt="Ponzio 7">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- OVERLAY SAN MARCO -->
+    <div id="overlay-sanmarco"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; overflow: auto;">
+        <!-- Main Close Button -->
+        <div class="main-close-btn" onclick="closeOverlay('overlay-sanmarco')"></div>
+
+        <div class="overlay-content">
+            <!-- Window 1: Text History -->
+            <div class="retro-window-popup w-text-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Laghetto di San Marco – Un frammento che resiste alla rimozione</div>
+                    <p>In via San Marco sopravvive uno degli ultimi frammenti visibili della Milano d’acqua: il Laghetto
+                        di
+                        San Marco, residuo del sistema dei Navigli interni.</p><br>
+                    <p>Per secoli questo specchio d’acqua ha funzionato come approdo, nodo logistico e infrastruttura
+                        urbana,
+                        collegando la città ai flussi commerciali e produttivi.</p><br>
+                    <p>A differenza di altri canali, non viene completamente interrato, ma progressivamente isolato dal
+                        sistema idrico che gli dava senso.</p><br>
+                    <p>L’acqua resta, ma perde funzione.</p><br>
+                    <p>Da infrastruttura operativa diventa elemento decorativo, pittoresco, marginale.</p><br>
+                    <p>Il laghetto sopravvive come immagine, non come sistema.</p><br>
+                    <p>È una presenza tollerata, non riconosciuta.</p><br>
+                    <p>Qui la città non cancella del tutto l’acqua, ma la neutralizza trasformandola in memoria innocua.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Window 2: Text Perché qui -->
+            <div class="retro-window-popup w-text-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Perché qui</div>
+                    <p>Via San Marco è stata scelta perché rappresenta una forma diversa di rimozione: non la
+                        cancellazione,
+                        ma la folklorizzazione.</p><br>
+                    <p>Il laghetto viene raccontato come curiosità storica, come frammento romantico di una città che
+                        non
+                        esiste più.</p><br>
+                    <p>La sua origine infrastrutturale viene oscurata a favore di una narrazione estetica e nostalgica.
+                    </p>
+                    <br>
+                    <p>In questo modo l’acqua resta visibile, ma perde valore politico e funzionale.</p><br>
+                    <p>Non è più letta come parte di un sistema idrico, né come elemento capace di raccontare le
+                        fragilità
+                        urbane contemporanee.</p><br>
+                    <p>Qui la memoria riaffiora, ma viene depotenziata.</p><br>
+                    <p>È una sopravvivenza residuale che rassicura, invece di interrogare.</p>
+                </div>
+            </div>
+
+            <!-- Window 3: Text The Action -->
+            <div class="retro-window-popup w-text-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">L'azione di Underland</div>
+                    <p>Per questa tappa Underland costruisce il concept di un documentario divulgativo degli anni ’60,
+                        presentato come materiale ritrovato.</p><br>
+                    <p>Il video si apre con titoli di testa che dichiarano il dispositivo narrativo — «Underland
+                        presenta…
+                        L’ultimo laghetto. San Marco. Documentario trovato inedito» — evocando l’estetica dei servizi
+                        culturali televisivi dell’epoca.</p><br>
+                    <p>La voce narrante adotta un tono pacato e lievemente malinconico, raccontando il laghetto come
+                        testimonianza di un passato che resiste ai margini della città moderna.</p><br>
+                    <p>Le immagini d’epoca, tratte da fotografie reali, vengono animate attraverso tecniche di
+                        image-to-video
+                        con intelligenza artificiale, mentre il doppiaggio riproduce il linguaggio dei documentari
+                        storici.
+                    </p><br>
+                    <p>Il video si conclude con titoli di coda che esplicitano la provenienza dei materiali d’archivio,
+                        rendendo visibile l’intervento del collettivo e la trasformazione della memoria visiva in
+                        racconto
+                        critico contemporaneo.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1839,6 +2279,60 @@
             });
         }
 
+        // Gestione Overlay Pacini
+        const tappaPacini = document.getElementById('tappa-pacini');
+        const overlayPacini = document.getElementById('overlay-pacini');
+
+        if (tappaPacini) {
+            tappaPacini.addEventListener('click', function (e) {
+                // Mobile: Prevent click if not zoomed
+                if (window.innerWidth <= 768 && !isZoomed) {
+                    return;
+                }
+
+                // Preveniamo zoom/spostamento mappa se necessario
+                e.stopPropagation();
+                overlayPacini.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Blocca scroll sfondo
+            });
+        }
+
+        // Gestione Overlay Ponzio
+        const tappaPonzio = document.getElementById('tappa-ponzio');
+        const overlayPonzio = document.getElementById('overlay-ponzio');
+
+        if (tappaPonzio) {
+            tappaPonzio.addEventListener('click', function (e) {
+                // Mobile: Prevent click if not zoomed
+                if (window.innerWidth <= 768 && !isZoomed) {
+                    return;
+                }
+
+                // Preveniamo zoom/spostamento mappa se necessario
+                e.stopPropagation();
+                overlayPonzio.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Blocca scroll sfondo
+            });
+        }
+
+        // Gestione Overlay San Marco
+        const tappaSanMarco = document.getElementById('tappa-sanmarco');
+        const overlaySanMarco = document.getElementById('overlay-sanmarco');
+
+        if (tappaSanMarco) {
+            tappaSanMarco.addEventListener('click', function (e) {
+                // Mobile: Prevent click if not zoomed
+                if (window.innerWidth <= 768 && !isZoomed) {
+                    return;
+                }
+
+                // Preveniamo zoom/spostamento mappa se necessario
+                e.stopPropagation();
+                overlaySanMarco.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Blocca scroll sfondo
+            });
+        }
+
         function closeOverlay(id) {
             document.getElementById(id).style.display = 'none';
             document.body.style.overflow = ''; // Riattiva scroll
@@ -1853,6 +2347,11 @@
             let startX, startY, initialLeft, initialTop;
 
             const startHandler = (e) => {
+                // 0. Disable Drag on Mobile
+                if (window.innerWidth <= 768) {
+                    return;
+                }
+
                 // 1. Z-Index Management (Bring to text)
                 highestZ++;
                 el.style.zIndex = highestZ;
