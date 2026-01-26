@@ -232,6 +232,7 @@
 
             .intro-text {
                 font-size: 2rem;
+                line-height: 1.1;
                 bottom: 15vh;
                 /* Lowered position as requested */
                 left: 0;
@@ -374,6 +375,7 @@
 
             .manifesto-title {
                 font-size: 2rem;
+                line-height: 1.1;
                 /* Smaller for mobile */
                 /* Pull slightly closer to edges (parent has 20px padding) */
                 width: calc(100% + 10px);
@@ -410,6 +412,17 @@
             filter: brightness(0.8);
         }
 
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+            pointer-events: none;
+            z-index: 1;
+        }
+
         /* Griglia per contenere gli elementi sopra l'immagine */
         .overlay-grid {
             position: absolute;
@@ -419,6 +432,7 @@
             height: 100%;
             padding: 50px;
             pointer-events: none;
+            z-index: 2;
             /* Lascia passare i click se serve */
         }
 
@@ -575,6 +589,10 @@
                 /* Stays behind relative overlay-grid */
             }
 
+            .gradient-overlay {
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+            }
+
             .content-layer {
                 padding: 40px 20px 0 20px;
                 /* Reduced top padding from 80 to 40 */
@@ -606,6 +624,7 @@
                 left: auto;
                 margin-bottom: 40px;
                 font-size: 2rem;
+                line-height: 1.1;
             }
 
             .modules-right {
@@ -655,6 +674,11 @@
                 flex-direction: column;
                 gap: 20px;
                 padding: 30px 20px;
+            }
+
+            .download-btn {
+                font-size: 2rem;
+                line-height: 1.1;
             }
 
             .box-2 {
@@ -1090,6 +1114,7 @@
                     <circle id="tappa-sanmarco" class="tappa" cx="543.11" cy="348.43" r="7.73" />
                     <circle id="tappa-molino" class="tappa" cx="512.91" cy="363.89" r="7.73" />
                     <circle id="tappa-borsieri" class="tappa" cx="492.61" cy="291.89" r="7.73" />
+                    <circle id="tappa-ponzio" class="tappa" cx="538.28" cy="372.11" r="7.73" />
 
 
                     <g id="etichetta3">
@@ -1312,8 +1337,8 @@
                 <g id="zona-forlanini" class="zona" data-zona="forlanini">
                     <path
                         d="M806.14,323.16c1.1.62,2.48,5.9,7.49,4.8l1.7,10.39-5.03,3.21c1.55,11.73,2.88,24.05,6.91,35.02l-7.99.2-4.76,12.04c-2.43,2.12-6.76,1.1-10.02,1.79-7.78,1.64-8.91,6.87-12.51,12.92,4.68,6.1,6.19,14.18,9.98,20.61,3.28,5.58,5.53,3.35,4.33,12.78-1.39,10.86-3.8,17.83-2.54,29.94,1.39,13.35,11.75,23.42,14.3,36.26-3.22,3.97-8.23,6.46-11.2,10.68-2.62,3.72-4.98,9.82-7.9,13.91-1.25,1.74-4.06,2.8-4.87,5.21-.69,2.04.12,4.16-1.2,7.81-2.05,5.69-4.45,5.98-6.92,9.43-1.4,1.95-3.9,8.37.4,6.31l-.91,4.54c-4.35.73-3.71-3.87-5.83-6.41-2.26-2.71-3.89-1.52-4.88-2.03-.35-.18-.46-1.9-1.66-2.33-3.56-1.3-6.73,2.15-10.34,1.69,1.33,7.03,1.86,13.13-4.21,18.04-1.07.86-7.04,3.87-7.99,3.83-.72-.03-.67-1.74-1.4-2.26-.43-.31-1.58.39-1.73.21-.25-.31.1-1.59-.39-2.22-1.94-2.51-13.09-14.04-15.19-15.34-1.38-.86-2.81.52-3.67.01-20.23-11.83-47.34-20.97-63.51-39.99-9.68-11.39-17.66-23.44-30.1-32.51-4.74-3.46-14.67-10.5-17.59-15.2-.71-1.14-2.99-7.78-2.9-8.61.16-1.49,5.81-5.33,4.12-8.51l-13.16-4.55c-2.97-9.15-13.51-13.36-20.23-19.75-3.14-4.36-1.74-8.88-.15-13.54,3.71-10.86,12.07-21.95,16.2-32.88l-2.54-34.77c9.85-.49,19.7,1.77,29.57.95,8.9-.74,18.1-2.74,27.18-2.8,6.81-.05,27.17,2.87,31.45-.35,1.38-1.04,2.17-3.34,2.93-3.88.39-.28,8.04-3.06,8.98-3.29,3.28-.77,19.58-1.89,21.48.45.49.6,1.07,7.71,5.97,6.16,2.08-.66,1.18-6.13,3.84-7.12,3.88-.7,3.14,5.04,4.57,5.4,7.67.24,10.6-2.14,9.41-10.05,4.62,4.61,11,5.63,17.09,4.38l1.29-5.97c.44-.53,1.53-.76,2.24-.9,1.07-.21,9.24-1.03,9.72-.94,1.59.31,2.29,3.29,3.82,4.26,3.99,2.53,23.92-.39,29.49-1.27,1.06-.68-.59-3.82,1.79-5.47.39-.27,6.57-.53,7.06-.26Z" />
-                    <circle id="tappa-ponzio" class="tappa" cx="538.28" cy="372.11" r="7.73" />
-                    <circle id="tappa2-2" class="tappa" data-name="tappa2" cx="587.76" cy="423.38" r="7.73"
+
+                    <circle id="tappa-bonomelli" class="tappa" data-name="tappa2" cx="587.76" cy="423.38" r="7.73"
                         style="fill: #0502fd;" />
                     <g id="etichetta1-3" data-name="etichetta1">
                         <rect x="635.56" y="466.32" width="41.16" height="10.99" style="fill: #0502fd;" />
@@ -1565,6 +1590,7 @@
 
         <div class="immersive-wrapper">
             <img src="img/img-acqua1.png" alt="Allagamento Milano" class="background-img">
+            <div class="gradient-overlay"></div>
 
             <div class="overlay-grid">
 
@@ -1583,10 +1609,11 @@
             </div>
         </div>
         <footer class="main-footer">
-            <div class="download-btn">
+            <a href="https://drive.google.com/file/d/1c1yV91q2L_eymdEsauUO4y1fTXkTJWpr/view?usp=drive_link"
+                target="_blank" class="download-btn" style="text-decoration: none; color: white;">
                 <span>scarica la mappa</span>
                 <span class="arrow-down">↓</span>
-            </div>
+            </a>
 
             <div class="social-area">
                 <span class="social-text">
@@ -3152,6 +3179,133 @@
         </div>
     </div>
 
+    <!-- OVERLAY BONOMELLI -->
+    <div id="overlay-bonomelli"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; overflow: auto;">
+        <!-- Main Close Button -->
+        <div class="main-close-btn" onclick="closeOverlay('overlay-bonomelli')"></div>
+
+        <div class="overlay-content">
+            <!-- Window 1: Text Title -->
+            <div class="retro-window-popup w-text-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Piazza Geremia Bonomelli</div>
+                    <p>Il Collettore Est è una delle grandi infrastrutture idrauliche costruite a Milano tra la fine
+                        dell’Ottocento e i primi decenni del Novecento, quando la città stava crescendo più velocemente
+                        di quanto potesse permettersi di fallire.</p><br>
+                    <p>Progettato per convogliare acque meteoriche e reflue da ampie porzioni della città orientale, il
+                        collettore rispondeva a un’idea di Milano asciutta, ordinata, controllabile.</p><br>
+                    <p>Le sue dimensioni monumentali raccontano un’epoca in cui l’ingegneria urbana credeva di poter
+                        dominare l’acqua attraverso il calcolo e la materia.</p><br>
+                    <p>Oggi quel sistema continua a funzionare, ma in condizioni radicalmente mutate.</p><br>
+                    <p>Il carico idrico è aumentato, il suolo si è impermeabilizzato, le piogge sono diventate più
+                        intense e concentrate.</p><br>
+                    <p>Il Collettore Est non è un reperto del passato: è un’infrastruttura viva, che assorbe ogni evento
+                        climatico estremo.</p><br>
+                    <p>È qui che si misura la distanza tra la città che era stata immaginata e quella che esiste oggi.
+                    </p><br>
+                    <p>Nel sottosuolo, il tempo non è passato invano: si è accumulato.</p>
+                </div>
+            </div>
+
+            <!-- Window 2: Why Here -->
+            <div class="retro-window-popup w-text-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">Perché qui</div>
+                    <p>Piazza Geremia Bonomelli è stata scelta perché rappresenta un punto emblematico di contatto tra
+                        la superficie urbana e il sistema fognario profondo.</p><br>
+                    <p>Il manufatto fognario presente in questa area è direttamente legato al Collettore Est e ne rende
+                        percepibile l’esistenza senza mostrarla davvero.</p><br>
+                    <p>Questo tratto è considerato fragile perché lavora costantemente in condizioni di stress
+                        idraulico, soprattutto durante eventi di pioggia intensa.</p><br>
+                    <p>La sua progettazione risponde a parametri climatici ormai superati.</p><br>
+                    <p>Ogni sovraccarico non resta confinato nel sottosuolo, ma si traduce in allagamenti, rigurgiti e
+                        cedimenti a catena.</p><br>
+                    <p>Abbiamo scelto questa tappa perché qui il problema non è spettacolare, ma strutturale.</p><br>
+                    <p>Non è l’eccezione a colpire, ma la normalità del rischio.</p><br>
+                    <p>Bonomelli è un luogo in cui la fragilità non si vede, ma si accumula, pronta a riemergere.</p>
+                </div>
+            </div>
+
+            <!-- Window 3: Action -->
+            <div class="retro-window-popup w-text-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <div class="win-body">
+                    <div class="win-title">L'azione di Underland</div>
+                    <p><strong>Fase I – Modellazione</strong><br>
+                        Sulla base dei materiali fotografici d’archivio e dei disegni tecnici originali della struttura,
+                        è stato realizzato un modello tridimensionale che rispettasse il più possibile le proporzioni
+                        reali del manufatto.</p><br>
+                    <p><strong>Fase II – Texturing e materiali</strong><br>
+                        Utilizzando le fotografie disponibili, le superfici sono state estrapolate e rielaborate sotto
+                        forma di materiali PBR, in modo che potessero interagire in maniera realistica con le luci
+                        dinamiche del motore di rendering. Le texture sono state applicate al modello attraverso un
+                        accurato lavoro di UV-mapping.</p><br>
+                    <p><strong>Fase III – Camera</strong><br>
+                        Per simulare l’effetto di un camcorder “tenuto a mano”, sono state effettuate riprese reali
+                        successivamente tracciate, al fine di estrapolare un movimento di camera realistico da applicare
+                        alla camera virtuale.</p><br>
+                    <p><strong>Fase IV – Rendering</strong><br>
+                        Per ricreare la visualizzazione tipica di una VHS, è stato utilizzato un software in grado di
+                        simulare le distorsioni caratteristiche del medium: blur, noise, aberrazioni cromatiche. Per
+                        accentuare ulteriormente l’effetto, la risoluzione dell’output finale è stata impostata a
+                        640×480 px, la massima risoluzione ottenibile da una camera VHS.</p>
+                </div>
+            </div>
+
+            <!-- Images -->
+            <div class="retro-window-popup w-img-1">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli1.png" class="win-img" alt="Bonomelli 1">
+            </div>
+
+            <div class="retro-window-popup w-img-2">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli2.png" class="win-img" alt="Bonomelli 2">
+            </div>
+
+            <div class="retro-window-popup w-img-3">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli3.png" class="win-img" alt="Bonomelli 3">
+            </div>
+
+            <div class="retro-window-popup w-img-4">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli4.png" class="win-img" alt="Bonomelli 4">
+            </div>
+
+            <div class="retro-window-popup w-img-5">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli5.png" class="win-img" alt="Bonomelli 5">
+            </div>
+
+            <div class="retro-window-popup w-img-6">
+                <div class="win-btn">
+                    <div class="win-close-icon"></div>
+                </div>
+                <img src="img/bonomelli6.png" class="win-img" alt="Bonomelli 6">
+            </div>
+        </div>
+    </div>
+
     <!-- Script Gestione Overlay -->
     <script>
         // Gestione Overlay Gioia
@@ -3347,6 +3501,23 @@
 
 
 
+
+        // Gestione Overlay Bonomelli
+        const tappaBonomelli = document.getElementById('tappa-bonomelli');
+        const overlayBonomelli = document.getElementById('overlay-bonomelli');
+
+        if (tappaBonomelli) {
+            tappaBonomelli.addEventListener('click', function (e) {
+                // Mobile: Prevent click if not zoomed
+                if (window.innerWidth <= 768 && !isZoomed) {
+                    return;
+                }
+
+                e.stopPropagation();
+                overlayBonomelli.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Blocca scroll sfondo
+            });
+        }
 
         function closeOverlay(id) {
             document.getElementById(id).style.display = 'none';
